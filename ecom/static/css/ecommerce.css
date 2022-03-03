@@ -1,0 +1,125 @@
+.category-header{
+    font-size: 2.5rem;
+    color: #cacfcc;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    word-spacing: 0.3rem;
+}
+.cards-wrapper{
+    width: 80%;
+    justify-content: space-around;
+    margin-top: 6rem;
+    display: flex;
+    padding: 1rem;
+    flex-wrap: wrap;
+    cursor: pointer;
+}
+.card{
+    width: 14rem;
+    height: 10rem;
+    position: relative;
+    transition: 0.5s;
+    cursor: pointer;
+    background-color: #86c232;
+}
+.card img{
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+    box-shadow: 0.3rem 0.3rem 0.1rem #000, 0.6rem 0.6rem 0.1rem #61892f;
+}
+.card-text{
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+    opacity: 0;
+    font-size: 1.3rem;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.card:hover .card-img{
+    filter: blur(0.2rem);
+    transform: scale(1.05);
+    box-shadow: 0.6rem 0.6rem 0.5rem #000, 1.2rem 1.2rem 0.5rem #61892f;
+}
+.card:hover .card-text{
+    opacity: 1;
+    filter: none;
+    transition: 0.3s 0.5s;
+}
+.product-header h1{
+    color: #cacfcc;
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+    margin-bottom: 2rem;
+}
+.brandd h3{
+    color: var(--green_dark);
+    font-size: 3rem;
+    font-weight: 300;
+    text-align: center;
+    position: relative;
+    text-transform: uppercase;
+}
+.brandd h3::after{
+    content: "";
+    width: 80%;
+    height: 0.1rem;
+    background-color: #cacfcc;
+    position: absolute;
+    top: 5rem;
+    left: calc(50% - 40%);
+}
+.product-wrapper{
+    display: flex;
+    margin-top: 3rem;
+    width: 100%;
+    height: 30rem;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.product-card{
+    padding: 1rem;
+    width: 20rem;
+    height: 21.5rem;
+    border: solid black;
+    background: linear-gradient(0deg,var(--green_dark),var(--green_light));
+    box-shadow: 0.3rem 0.3rem 0.3rem rgba(0,0,0,0.5);
+    position: relative;
+}
+.product-card img{
+    width: 100%;
+    height: 13rem;
+    /* object-fit: contain; */
+}
+.product-name{
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.price{
+    font-size: 1.5rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.3rem;
+}
+.product-card button{
+    padding: 0.75rem;
+    position: absolute;
+    bottom:1rem;
+    right:1rem;
+    background-color: #000;
+    color:var(--green_light);
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: 500;
+    text-transform: capitalize;
+    /* border: 0.2rem solid #000; */
+    transition: 0.4s;
+}
+.product-card button:hover{
+    transform: scale(1.1);
+}
+

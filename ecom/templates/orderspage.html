@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+{% if order_count == 0 %}
+<div class="cart">
+    <h3 class="cart-msg">No Orders Yet!</h3>
+    <a href="{% url 'ecom:category' %}" class="return-link">START SHOPPING!</a>
+</div>
+{% else %}
+<div class="orders-container">
+    <div class="order-header">
+        <p class="orders-header">Here are you Orders, {{user.username}}</p>
+    </div>
+    <div class="order-cards-container">
+        {% for order in orders %}
+        <a href="{% url 'ecom:order_detail' pk=order.pk %}" class = "order-card-link">
+            <div class="order-card">
+                <span class="span-1"></span>
+                <span class="span-2"></span>
+                <span class="span-3"></span>
+                <span class="span-4"></span>
+                <p class="order-id">Order #{{order.pk}}</p>
+                <div class="data-container">
+                    <p class="order-date"><span class="span-header">DATE:</span> {{order.date_ordered}}</p>
+                    <p class="order-number"><span class="span-header">NO. OF ITEMS:</span> {{order.number_of_items}}</p>
+                    <p class="order-total"><span class="span-header">PRICE: </span>&#8377; {{order.total}}</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock content %}

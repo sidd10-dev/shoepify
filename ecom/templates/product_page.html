@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="product-container">
+  <div class="product-header">
+    <h1>Let's find out what you like!</h1>
+  </div>
+  {% for brand in brandcategory %}
+  <div class="brandd">
+    <h3>{{brand.Brand.brand_name}}</h3>
+    <div class="product-wrapper">
+    {% for product in products %}
+    {% if product.brand == brand %}
+      <div class="product-card">
+        <img src="{{product.product_image.url}}" alt="image-1">
+        <p class="product-name">{{product.product_name}}</p>
+        <p class="price">&#8377;{{product.price}}</p>
+        <form method="post" action = "{% url 'ecom:addtocart' pk=product.pk %}">
+          {% csrf_token %}
+          <label for = "size" class="size">SIZE:</label>
+          <select name="size" class = "select">
+            <option value="8">8</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+          </select>
+          <button type="submit">Add to Cart<span></span></button>
+        </form>  
+      </div>
+    {% endif %}
+    {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}

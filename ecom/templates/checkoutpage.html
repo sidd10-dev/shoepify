@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="checkout-container">
+    <h3 class="checkout-header">
+        CHECKOUT
+    </h3>
+    <h5 class="checkout-header-2">
+        Enter Shipping Details
+    </h5>
+    <a href="{% url 'ecom:cart' %}"><button class="backtocart"><i class="fas fa-long-arrow-alt-left"></i> Go back To Cart</button></a>
+    <form action="" method="post" class="form">
+        {% csrf_token %}
+        <div class="name-input">
+            {% render_field form.name class="input" autocomplete="off" %}
+            <label for="name" class="label">
+                <span class="name-span">Name</span>
+            </label>
+        </div>
+        <div class="email-input">
+            {% render_field form.email class="input" autocomplete="off" %}
+            <label for="email" class="label">
+                <span class="name-span">Email</span>
+            </label>
+        </div>
+        <div class="Address-input">
+            {% render_field form.address class="input" autocomplete="off" %}
+            <label for="address" class="label">
+                <span class="name-span">Address</span>
+            </label>
+        </div>
+        <div class="pincode-input">
+            {% render_field form.pincode class="input" autocomplete="off" %}
+            <label for="pincode" class="label">
+                <span class="name-span">Pincode</span>
+            </label>
+        </div>
+        <div class="phone-input">
+            {% render_field form.phone1 class="input" autocomplete="off" %}
+            <label for="phone-number" class="label">
+                <span class="name-span">Phone number 1</span>
+            </label>
+        </div>
+        <div class="phone-input">
+            {% render_field form.phone2 class="input" autocomplete="off" %}
+            <label for="phone-number" class="label">
+                <span class="name-span">Phone number 2</span>
+            </label>
+        </div>
+        <div class="button-container">
+            <button type="submit" class="checkout-submit-button">Confirm Order <i class="fas fa-check"></i></button>
+        </div>
+    </form>
+</div>
+{% endblock content %}

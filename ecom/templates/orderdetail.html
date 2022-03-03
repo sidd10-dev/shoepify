@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="order-detail-container">
+    <h1 class="order-detail-header">Order #{{order.pk}}</h1>
+    <div class="order-detail-data">
+        <div class="data-1">
+            <p class="order-detail-name">NAME: <span>{{object.customer.name}}</span></p>
+            <p class="order-detail-time">DATE AND TIME: <span>{{object.date_ordered}}</span></p>
+            <p class="order-detail-count">NUMBER OF ITEMS: <span>{{object.number_of_items}}</span></p>
+            <p class="order-detail-price">TOTAL: <span>&#8377; {{object.total}}</span></p>
+        </div>
+        <div class="data-2">
+            <p class="order-detail-address">SHIPPING-ADDRESS:
+                <span>{{object.customer.address}}-{{object.customer.pincode}}</span>
+            </p>
+        </div>
+    </div>
+    <div class="items">
+        <h1 class="order-detail-header">ITEMS BOUGHT</h1>
+        <div class="order-product-wrapper">
+            {% for op in products %}
+            <div class="cart-product">
+                <div>
+                    <img src="{{op.product.product_image.url}}" style="width: 15rem; height:15rem;">
+                </div>
+                <div class="cart-content">
+                    <p class="cart-product-name">{{op.product.product_name}}</p>
+                    <p class="cart-price">PRICE: &#8377;{{op.product.price}}</p>
+                    <p class="cart-price">SIZE: {{op.size}}</p>
+                    <div class="quantity">
+                        <p class="quantity-header">QUANTITY: {{op.quantity}}</p>
+                    </div>
+                </div>
+                <div class="order-buttons">
+                    <div class="order-detail-add-to-cart-button">
+                        <a href="{% url 'ecom:addtocart_cart' pk=op.product.pk size=op.size %}"><button>BUY AGAIN</button></a>
+                    </div>
+                    <div class="order-detail-shop-similar-button">
+                        <a href="{% url 'ecom:products' slug=op.product.brand.category.slug %}"><button>SHOP SIMILAR ITEMS</button></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <a href="{% url 'ecom:category' %}" class="return-link-order-detail">RESUME SHOPPING</a>
+</div>
+{% endblock content %}

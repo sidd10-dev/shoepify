@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="cart">
+  {% if count == 0 %}
+    <h3 class = "cart-msg">No Items Found!</h3>
+    <a href="{% url 'ecom:category' %}" class = "return-link">&#8592; GO BACK TO SHOPPING!</a>
+  {% else %}
+  <h1 class="cart-header">Cart</h1>
+  <a href="{% url 'ecom:checkout' %}"><button class="checkout-button">Proceed To Checkout <i class="fas fa-long-arrow-alt-right"></i></button></a>
+  <h3 class="subtotal">CART SUBTOTAL: &#8377;{{total}}</h3>
+  <div class="cart-product-wrapper">
+    {% for op in orderproduct %}
+    <div class="cart-product">
+      <div>
+        <img src="{{op.product.product_image.url}}" style="width: 15rem; height:15rem;">
+      </div>
+      <div class="cart-content">
+        <p class="cart-product-name">{{op.product.product_name}}</p>
+        <p class="cart-price">PRICE: &#8377;{{op.calcprice}}</p>
+        <p class="cart-price">SIZE: {{op.size}}</p>
+        <div class="quantity">
+          <p class="quantity-header">QUANTITY: </p>
+          <div class="icons-wrapper">
+            <a href="{% url 'ecom:addtocart_cart' pk=op.product.pk size=op.size %}"><i class="fas fa-sort-up up"></i></a>
+            <a href="{% url 'ecom:removefromcart' pk=op.product.pk size=op.size %}"><i class="fas fa-sort-down down"></i></a>
+          </div>
+          <p class="cart-quantity">{{op.quantity}}</p>
+        </div>
+      </div>
+      <div class="delete-button">
+        <a href="{% url 'ecom:deleteitem' pk=op.product.pk size=op.size %}"><button>Remove from Cart</button></a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <a href="{% url 'ecom:category' %}"><button class="continue-button"> <i class="fas fa-long-arrow-alt-left"></i> Back to Shopping</button></a>
+  <a href="{% url 'ecom:checkout' %}"><button class="checkout-button-2">Proceed To Checkout <i class="fas fa-long-arrow-alt-right"></i></button></a>
+  {% endif %}
+</div>
+{% endblock content %}

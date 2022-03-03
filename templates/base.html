@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>SHOPIFY</title>
+    <link rel="stylesheet" href="{% static 'css/ecommerce.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
+
+<body class="base-body">
+    <div class="navbar-1 target">
+        <ul>
+            {% for category in categories %}
+            <a href="{% url 'ecom:products' slug=category.slug %}" class="nav-link">
+                <li>{{category.category_name}}</li>
+            </a>
+            {% endfor %}
+            
+        </ul>
+    </div>
+    <nav class="navbar target">
+        <div class="menu-brand-container">
+            <div class="menu target">
+                <div class="line line-1 target"></div>
+                <!-- <div class="line line-2 target"></div> -->
+                <div class="line line-3 target"></div>
+            </div>
+            {% if user.is_authenticated %}
+            <a href="{% url 'ecom:category' %}" class="brand target">
+                SHOPIFY
+            </a>
+            {% endif %}
+
+        </div>
+        <div class="links">
+            {% if user.is_authenticated %}
+            <div class = "number-of-items">
+            <p>{{count}}</p>
+            </div>
+            <a href="{% url 'ecom:cart' %}" class="nav-link"><i class="fab fa-opencart nav-link"></i></a>
+            <a href="{% url 'ecom:orders' %}" class="nav-link">YOUR ORDERS</a>
+            <a href="{% url 'accounts:logout' %}" class="nav-link">LOGOUT</a>
+            {% else %}
+            <a href="{% url 'accounts:login' %}" class="nav-link main-link">LOGIN</a>
+            <a href="{% url 'accounts:signup' %}" class="nav-link main-link">SIGNUP</a>
+            {% endif %}
+        </div>
+    </nav>
+    {% block content %}
+
+    {% endblock content %}
+    <script src="{% static 'js/ecommerce.js' %}"></script>
+</body>
+
+</html>

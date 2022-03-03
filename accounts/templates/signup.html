@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="sign-up-container">
+<div class="sign-up">Sign Up
+    <span class = "line-span"></span>
+</div>
+
+<form action="" method="post">
+    <div class="input-container">
+    {% csrf_token %}
+    <label for="username">Username</label>
+    {% render_field form.username class="username input" placeholder="Enter your Username" %}
+    <label for="Email">Email</label>
+    {% render_field form.email class="email input" placeholder="Enter your email" %}
+    <label for="Password1">Password</label>
+    {% render_field form.password1 class="password1 input" placeholder="Enter your Password" %}
+    <label for="Password2">Confirm Password</label>
+    {% render_field form.password2 class="password2 input" placeholder="Confirm your Password" %}
+    </div>
+    <button type="submit" class = "signup-btn"><span>SignUp</span></button>
+</form>
+</div>
+{% endblock content %}
